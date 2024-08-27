@@ -1,10 +1,15 @@
 package id.my.hendisantika.example.controller;
 
+import id.my.hendisantika.example.entity.Employee;
 import id.my.hendisantika.example.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,4 +29,15 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
+    /**
+     * This method is called when a GET request is made
+     * URL: localhost:8080/employee/v1/
+     * Purpose: Fetches all the employees in the employee table
+     *
+     * @return List of Employees
+     */
+    @GetMapping("/")
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        return ResponseEntity.ok().body(employeeService.getAllEmployees());
+    }
 }

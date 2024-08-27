@@ -1,4 +1,4 @@
-package id.my.hendisantika.springbootwithpostgresexample;
+package id.my.hendisantika.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

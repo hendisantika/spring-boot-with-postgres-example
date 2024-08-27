@@ -48,4 +48,15 @@ public class EmployeeService {
         log.info("Employee with id: {} saved successfully", employee.getId());
         return savedEmployee;
     }
+
+    public Employee updateEmployee(Employee employee) {
+        Optional<Employee> existingEmployee = employeeRepository.findById(employee.getId());
+        employee.setCreatedAt(existingEmployee.get().getCreatedAt());
+        employee.setUpdatedAt(LocalDateTime.now());
+
+        Employee updatedEmployee = employeeRepository.save(employee);
+
+        log.info("Employee with id: {} updated successfully", employee.getId());
+        return updatedEmployee;
+    }
 }

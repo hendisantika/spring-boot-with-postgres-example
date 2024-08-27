@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,5 +69,18 @@ public class EmployeeController {
     @PostMapping("/")
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         return ResponseEntity.ok().body(employeeService.saveEmployee(employee));
+    }
+
+    /**
+     * This method is called when a PUT request is made
+     * URL: localhost:8080/employee/v1/
+     * Purpose: Update an Employee entity
+     *
+     * @param employee - Employee entity to be updated
+     * @return Updated Employee
+     */
+    @PutMapping("/")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+        return ResponseEntity.ok().body(employeeService.updateEmployee(employee));
     }
 }

@@ -9,6 +9,6 @@ spring:
     enabled: true
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/employees?currentSchema=employees
+    url: jdbc:postgresql://postgres:5432/employees?currentSchema=employees
     username: yuji
     password: S3cret

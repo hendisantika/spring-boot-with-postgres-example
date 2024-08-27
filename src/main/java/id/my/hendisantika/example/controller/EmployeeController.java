@@ -27,7 +27,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @RestController
-@RequestMapping("/employee/v1")
+@RequestMapping("/employees/v1")
 @RequiredArgsConstructor
 @Validated
 public class EmployeeController {

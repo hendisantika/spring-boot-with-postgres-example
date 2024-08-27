@@ -59,4 +59,8 @@ public class EmployeeService {
         log.info("Employee with id: {} updated successfully", employee.getId());
         return updatedEmployee;
     }
+
+    public void deleteEmployeeById(Integer id) {
+        employeeRepository.deleteById(id);
+    }
 }

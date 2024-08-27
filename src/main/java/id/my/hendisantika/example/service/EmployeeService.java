@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,14 @@ public class EmployeeService {
         }
         log.info("Employee with id: {} doesn't exist", id);
         return null;
+    }
+
+    public Employee saveEmployee(Employee employee) {
+        employee.setCreatedAt(LocalDateTime.now());
+        employee.setUpdatedAt(LocalDateTime.now());
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        log.info("Employee with id: {} saved successfully", employee.getId());
+        return savedEmployee;
     }
 }

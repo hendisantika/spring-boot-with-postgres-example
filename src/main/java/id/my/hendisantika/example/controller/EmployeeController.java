@@ -5,6 +5,7 @@ import id.my.hendisantika.example.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,5 +83,19 @@ public class EmployeeController {
     @PutMapping("/")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
         return ResponseEntity.ok().body(employeeService.updateEmployee(employee));
+    }
+
+    /**
+     * This method is called when a PUT request is made
+     * URL: localhost:8080/employee/v1/1 (or any other id)
+     * Purpose: Delete an Employee entity
+     *
+     * @param id - employee's id to be deleted
+     * @return a String message indicating employee record has been deleted successfully
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id) {
+        employeeService.deleteEmployeeById(id);
+        return ResponseEntity.ok().body("Deleted employee successfully");
     }
 }

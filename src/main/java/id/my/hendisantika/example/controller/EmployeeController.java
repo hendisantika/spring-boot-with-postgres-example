@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,5 +55,18 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
+    }
+
+    /**
+     * This method is called when a POST request is made
+     * URL: localhost:8080/employee/v1/
+     * Purpose: Save an Employee entity
+     *
+     * @param employee - Request body is an Employee entity
+     * @return Saved Employee entity
+     */
+    @PostMapping("/")
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
+        return ResponseEntity.ok().body(employeeService.saveEmployee(employee));
     }
 }

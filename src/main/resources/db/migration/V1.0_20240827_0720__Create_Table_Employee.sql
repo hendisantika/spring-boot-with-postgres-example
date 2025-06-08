@@ -1,13 +1,19 @@
-CREATE TABLE if NOT EXISTS employee
+CREATE TABLE if NOT EXISTS employees
 (
     id
-    INTEGER,
+    INTEGER
+    PRIMARY
+    KEY,
     first_name
     VARCHAR
 (
     250
 ),
     last_name VARCHAR
+(
+    250
+),
+    email VARCHAR
 (
     250
 ),
@@ -20,16 +26,21 @@ CREATE TABLE if NOT EXISTS employee
 (
     250
 ),
-    joined_on DATE,
-    address VARCHAR
+    salary DECIMAL
+(
+    10,
+    2
+),
+    department VARCHAR
 (
     250
 ),
+    hire_date DATE,
+    address VARCHAR
+(
+    500
+),
     date_of_birth DATE,
     created_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    PRIMARY KEY
-(
-    id
-)
+    updated_at TIMESTAMP
     );

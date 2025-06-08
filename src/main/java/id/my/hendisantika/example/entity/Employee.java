@@ -30,10 +30,13 @@ public class Employee {
     private Integer id;
     private String firstName;
     private String lastName;
+    private String email;
     private Integer age;
     private String designation;
     private String phoneNumber;
-    private LocalDate joinedOn;
+    private Double salary;
+    private String department;
+    private LocalDate hireDate;
     private String address;
     private LocalDate dateOfBirth;
     private LocalDateTime createdAt;

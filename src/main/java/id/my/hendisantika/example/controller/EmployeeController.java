@@ -27,7 +27,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @RestController
-@RequestMapping("/employees/v1")
+@RequestMapping("/api/employees")
 @RequiredArgsConstructor
 @Validated
 public class EmployeeController {
@@ -41,7 +41,7 @@ public class EmployeeController {
      *
      * @return List of Employees
      */
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok().body(employeeService.getAllEmployees());
     }
@@ -56,7 +56,11 @@ public class EmployeeController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
+        Employee employee = employeeService.getEmployeeById(id);
+        if (employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(employee);
     }
 
     /**
@@ -67,9 +71,9 @@ public class EmployeeController {
      * @param employee - Request body is an Employee entity
      * @return Saved Employee entity
      */
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
-        return ResponseEntity.ok().body(employeeService.saveEmployee(employee));
+        return ResponseEntity.created(null).body(employeeService.saveEmployee(employee));
     }
 
     /**
@@ -80,8 +84,9 @@ public class EmployeeController {
      * @param employee - Employee entity to be updated
      * @return Updated Employee
      */
-    @PutMapping("/")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
+        employee.setId(id);
         return ResponseEntity.ok().body(employeeService.updateEmployee(employee));
     }
 
@@ -94,8 +99,8 @@ public class EmployeeController {
      * @return a String message indicating employee record has been deleted successfully
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteEmployeeById(@PathVariable Integer id) {
         employeeService.deleteEmployeeById(id);
-        return ResponseEntity.ok().body("Deleted employee successfully");
+        return ResponseEntity.noContent().build();
     }
 }

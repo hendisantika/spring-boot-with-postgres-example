@@ -88,11 +88,11 @@ curl -X POST http://localhost:8080/api/employees \
   -H "Content-Type: application/json" \
   -d '{
     "id": 1,
-    "firstName": "John",
-    "lastName": "Doe",
+    "first_name": "John",
+    "last_name": "Doe",
     "email": "john.doe@example.com",
-    "phoneNumber": "+1234567890",
-    "hireDate": "2024-01-01",
+    "phone_number": "+1234567890",
+    "hire_date": "2024-01-01",
     "salary": 75000,
     "department": "Engineering"
   }'
@@ -104,11 +104,11 @@ curl -X POST http://localhost:8080/api/employees \
 curl -X PUT http://localhost:8080/api/employees/1 \
   -H "Content-Type: application/json" \
   -d '{
-    "firstName": "John",
-    "lastName": "Doe",
+    "first_name": "John",
+    "last_name": "Doe",
     "email": "john.doe@example.com",
-    "phoneNumber": "+1234567890",
-    "hireDate": "2024-01-01",
+    "phone_number": "+1234567890",
+    "hire_date": "2024-01-01",
     "salary": 80000,
     "department": "Engineering"
   }'
@@ -127,11 +127,11 @@ Successful response when getting an employee:
 ```json
 {
   "id": 1,
-  "firstName": "John",
-  "lastName": "Doe",
+   "first_name": "John",
+   "last_name": "Doe",
   "email": "john.doe@example.com",
-  "phoneNumber": "+1234567890",
-  "hireDate": "2024-01-01",
+   "phone_number": "+1234567890",
+   "hire_date": "2024-01-01",
   "salary": 75000,
   "department": "Engineering"
 }
@@ -160,6 +160,27 @@ The project includes two Docker services:
 - `src/main/java/.../repository` - Data access layer
 - `src/main/java/.../service` - Business logic layer
 - `src/main/resources/db/migration` - Flyway migration scripts
+- `src/test/java/.../controller` - Integration tests for controllers
+- `src/test/java/.../config` - Test configuration
+
+## Testing
+
+The project includes integration tests for the REST API endpoints. These tests use TestContainers to spin up a
+PostgreSQL container for testing, ensuring that the tests run against a real database environment.
+
+To run the tests:
+
+```bash
+./gradlew test
+```
+
+The tests verify the CRUD operations for the Employee entity, ensuring that:
+
+- Employees can be created
+- Employees can be retrieved by ID
+- All employees can be listed
+- Employees can be updated
+- Employees can be deleted
 
 ## Contributing
 
